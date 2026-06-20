@@ -9,7 +9,7 @@
     {
       "matchManagers": ["docker-compose"],
       "matchUpdateTypes": ["minor", "patch"],
-      "automerge": true,
+      "automerge": false,
       "automergeType": "branch"
     },
     {
