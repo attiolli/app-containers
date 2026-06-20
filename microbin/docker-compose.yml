@@ -1,0 +1,14 @@
+services:
+  microbin:
+    image: danielszabo99/microbin:latest
+    container_name: microbin
+    restart: unless-stopped
+    networks:
+      - caddy-net
+    env_file: .env
+    volumes:
+      - ./data:/app/microbin_data
+
+networks:
+  caddy-net:
+    external: true

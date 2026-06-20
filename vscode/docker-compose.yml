@@ -1,0 +1,19 @@
+services:
+  code-server:
+    image: lscr.io/linuxserver/code-server:latest
+    container_name: vscode-server
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=Europe/Helsinki
+    volumes:
+      - ./config:/config
+      - ./projects:/config/workspace
+      - /srv/k8snvme/home-hass-config-v4-pvc-f39d1999-ac1b-4cb1-9435-ea7975e9109a:/config/workspace/hass
+    restart: unless-stopped
+    networks:
+      - caddy-net
+
+networks:
+  caddy-net:
+    external: true

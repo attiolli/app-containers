@@ -1,0 +1,12 @@
+services:
+  mosquitto:
+    image: public.ecr.aws/docker/library/eclipse-mosquitto:2.0.22
+    container_name: mosquitto
+    restart: unless-stopped
+    user: "1000:1000"
+    network_mode: host
+    volumes:
+      - ./config/mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - ./data:/data
+      - ./secret:/ext_mount/secret
+    mem_limit: 128m

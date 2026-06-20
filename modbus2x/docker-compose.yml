@@ -1,0 +1,16 @@
+services:
+  modbus2x:
+    image: attley86/modbus2x:main
+    container_name: modbus2x
+    restart: unless-stopped
+    pull_policy: always
+    environment:
+      - TZ=Europe/Helsinki
+      - MODBUS_DEBUG=no
+      - MODBUS_MQTT_BROKER=10.0.88.113
+      - MODBUS_MQTT_USERNAME=${MODBUS_MQTT_USERNAME}
+      - MODBUS_MQTT_PASSWORD=${MODBUS_MQTT_PASSWORD}
+      - MODBUS_MQTT_PUBLISH_INTERVAL=15
+      - MODBUS_HA_EXPIRE_AFTER=35
+    volumes:
+      - ./config.yml:/app/config.yml

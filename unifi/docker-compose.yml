@@ -1,0 +1,39 @@
+services:
+  unifi:
+    image: lscr.io/linuxserver/unifi-network-application:latest
+    container_name: unifi
+    env_file: .env
+    volumes:
+      - ./unifi-data:/config
+    ports:
+      - 8443:8443
+      - 3478:3478/udp
+      - 10001:10001/udp
+      - 8080:8080
+    depends_on:
+      unifi-db:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - caddy-net
+
+  unifi-db:
+    image: mongo:4.4
+    container_name: unifi-db
+    env_file: .mongo-env
+    volumes:
+      - ./unifi-db:/data/db
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/init.js:ro
+    restart: unless-stopped
+    networks:
+      - caddy-net
+    healthcheck:
+      test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+networks:
+  caddy-net:
+    external: true

@@ -1,0 +1,14 @@
+services:
+  wyoming-piper:
+    image: rhasspy/wyoming-piper:2.2.2
+    container_name: wyoming-piper
+    restart: unless-stopped
+    command:
+      - --voice
+      - fi_FI-harri-medium
+    #user: "1000:1000"
+    ports:
+      - "10200:10200"
+    volumes:
+      - ./data:/data
+    mem_limit: 1g

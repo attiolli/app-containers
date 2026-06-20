@@ -1,0 +1,16 @@
+services:
+  nodered:
+    image: ghcr.io/k8s-at-home/node-red:v3.0.2
+    container_name: nodered
+    environment:
+      - TZ=Europe/Helsinki
+    volumes:
+      - ./data:/data
+    mem_limit: 1g
+    restart: unless-stopped
+    networks:
+      - caddy-net
+
+networks:
+  caddy-net:
+    external: true
