@@ -4,6 +4,7 @@
   "docker-compose": {
     "fileMatch": ["(^|/)docker-compose\\.ya?ml$"]
   },
+  "timezone": "Europe/Helsinki",
   "packageRules": [
     {
       "matchManagers": ["docker-compose"],
@@ -15,7 +16,12 @@
       "matchManagers": ["docker-compose"],
       "matchUpdateTypes": ["major"],
       "automerge": false
+    },
+    {
+      "matchManagers": ["docker-compose"],
+      "matchPackageNames": ["mongo"],
+      "enabled": false
     }
   ],
-  "schedule": ["every weekend"]
+  "schedule": ["every night"]
 }
