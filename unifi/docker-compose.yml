@@ -18,7 +18,7 @@ services:
       - caddy-net
 
   unifi-db:
-    image: mongo:4.4
+    image: mongo:8.3
     container_name: unifi-db
     env_file: .mongo-env
     volumes:
