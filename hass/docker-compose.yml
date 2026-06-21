@@ -1,6 +1,6 @@
 services:
   hass:
-    image: ghcr.io/home-assistant/home-assistant:2026.5.4
+    image: ghcr.io/home-assistant/home-assistant:2026.6.4
     container_name: hass
     restart: unless-stopped
     privileged: true
