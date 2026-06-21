@@ -1,6 +1,6 @@
 services:
   unifi:
-    image: lscr.io/linuxserver/unifi-network-application:latest
+    image: lscr.io/linuxserver/unifi-network-application:10.4.57
     container_name: unifi
     env_file: .env
     volumes:

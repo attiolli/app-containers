@@ -1,6 +1,6 @@
 services:
   microbin:
-    image: danielszabo99/microbin:latest
+    image: danielszabo99/microbin:2.1.4
     container_name: microbin
     restart: unless-stopped
     networks:
