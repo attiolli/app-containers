@@ -23,5 +23,5 @@
       "enabled": false
     }
   ],
-  "schedule": ["every night"]
+  "schedule": ["after 10pm and before 5am"]
 }
