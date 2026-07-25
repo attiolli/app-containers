@@ -1,5 +1,6 @@
 # To bootstrap the auto deploy service run:
 
+<code>
 cat > /srv/app-containers/deploy.sh << 'EOF'
 #!/usr/bin/env bash
 set -euo pipefail
@@ -60,3 +61,4 @@ systemctl daemon-reload
 systemctl enable --now app-containers-deploy.timer
 systemctl start app-containers-deploy.service
 journalctl -u app-containers-deploy.service -n 50 --no-pager
+</code>
