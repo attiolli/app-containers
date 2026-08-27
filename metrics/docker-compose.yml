@@ -1,0 +1,45 @@
+services:
+  influxdb:
+    image: influxdb:1.8.10
+    container_name: influxdb
+    restart: unless-stopped
+    ports:
+      - "8086:8086"
+    volumes:
+      - /srv/influxdb/data:/var/lib/influxdb
+      - /srv/influxdb/influxdb.conf:/etc/influxdb/influxdb.conf:ro
+    env_file: /srv/influxdb/.env
+    environment:
+      - INFLUXDB_DB=homeassistant
+      - INFLUXDB_HTTP_AUTH_ENABLED=true
+      - INFLUXDB_DATA_INDEX_VERSION=tsi1
+      - TZ=Europe/Helsinki
+    networks:
+      - metrics
+    logging:
+      driver: json-file
+      options: { max-size: "10m", max-file: "3" }
+
+  grafana:
+    image: grafana/grafana-oss:12.0.2
+    container_name: grafana
+    restart: unless-stopped
+    user: "472"
+    env_file: /srv/grafana/.env
+    environment:
+      - TZ=Europe/Helsinki
+    volumes:
+      - /srv/grafana:/var/lib/grafana
+    networks:
+      - metrics
+      - caddy-net
+    depends_on:
+      - influxdb
+    logging:
+      driver: json-file
+      options: { max-size: "10m", max-file: "3" }
+
+networks:
+  metrics:
+  caddy-net:
+    external: true
