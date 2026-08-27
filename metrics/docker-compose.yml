@@ -21,7 +21,7 @@ services:
       options: { max-size: "10m", max-file: "3" }
 
   grafana:
-    image: grafana/grafana-oss:12.0.2
+    image: grafana/grafana-oss:12.4.3
     container_name: grafana
     restart: unless-stopped
     user: "472"
