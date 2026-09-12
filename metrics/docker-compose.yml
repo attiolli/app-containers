@@ -1,6 +1,6 @@
 services:
   influxdb:
-    image: influxdb:1.12.4
+    image: influxdb:1.13.1
     container_name: influxdb
     restart: unless-stopped
     user: "1500:1500"
