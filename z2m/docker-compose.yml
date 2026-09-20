@@ -28,8 +28,19 @@ services:
     volumes:
       - ./data:/data
     networks:
-      - caddy-net
+      caddy-net:
+        priority: 100
+      iot-vlan:
+        priority: 10
+        ipv4_address: 10.0.60.50
 
 networks:
   caddy-net:
     external: true
+  iot-vlan:
+    driver: macvlan
+    driver_opts:
+      parent: eth0.60
+    ipam:
+      config:
+        - subnet: 10.0.60.0/24
