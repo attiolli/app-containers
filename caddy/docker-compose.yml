@@ -1,6 +1,6 @@
 services:
   caddy:
-    image: ghcr.io/serfriz/caddy-cloudflare:2.11.4
+    image: ghcr.io/serfriz/caddy-cloudflare:2.11.7
     container_name: caddy
     ports:
       - "80:80"
